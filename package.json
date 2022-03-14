@@ -1,0 +1,19 @@
+{
+  "name": "to-do-list-nodejs",
+  "version": "1.0.0",
+  "description": "Projeto To-Do-List para o portfolio.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "author": "Fabricio Barreto",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
