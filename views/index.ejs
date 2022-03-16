@@ -8,19 +8,51 @@
     <title>To Do List</title>
 </head>
 <body>
-    
-    <form action="/create" method="post">
-        <input type="text" name="task" id="task" placeholder="Insira uma Tarefa">
-        <button type="submit">Adicionar</button>
-    </form>
+    <header>
 
-    <!-- adicionado um foreach para pegar cada task nas taskList e colocar em uma li -->
-    <ul>
-        <% taskList.forEach((task) =>{ %>
-            <li><%= task.task %> | <%= task.date.toLocaleDateString('pt-br') %></li>
-        <% }) %>
-    </ul>
+        <% if (task == null) { %>
+        <form action="/create" method="post">
+            <input type="text" name="task" id="task" placeholder="Insira uma Tarefa">
+            <button type="submit">Adicionar</button>
+        </form>
+        <% } else { %>
+        <form action="/updateOne/<%= task._id %>" method="post">
+            <input type="text" name="task" id="task" value="<%= task.task %>">
+            <button type="submit">Atualizar</button>
+        </form>
+        <% } %>
 
+    </header>
+
+    <section id="tasks">
+
+        <!-- adicionado um foreach para pegar cada task nas taskList e colocar em uma li -->
+        <ul>
+            <% taskList.forEach((task) =>{ %>
+                <li>
+                    <%= task.task %> | <%= task.date.toLocaleDateString('pt-br') %>
+                    <a href="/getById/<%= task._id %>/update">Editar</a>
+                    <a href="/getById/<%= task._id %>/delete">Apagar</a>
+                </li>
+            <% }) %>
+        </ul>
+
+    </section>
+
+    <% if (taskDelete != null) { %>
+    <section id="modal">
+
+        <div id="card">
+            <a href="/">X</a>
+            <h2>Confirmação</h2>
+            <hr>
+            <p>Deseja realmente apagar a tarefa: <%= taskDelete.task %> ?</p>
+            <a href="/">Não</a>
+            <a href="/deleteOne/<%= taskDelete._id %>">Sim</a>
+        </div>
+
+    </section>
+    <% } %>
 
     <script src="script.js"></script>
 </body>
