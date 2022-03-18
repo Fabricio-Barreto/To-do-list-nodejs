@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
 
+//Obs: By default, Mongoose adds an _id property to your schemas.
 const taskSchema = new mongoose.Schema({
     task: {
         type: String,
@@ -7,7 +8,7 @@ const taskSchema = new mongoose.Schema({
     },
     check: {
         type: Boolean,
-        require: true
+        default: false
     },
     date: {
         type: Date,
